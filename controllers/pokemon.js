@@ -25,5 +25,14 @@ module.exports = {
       .then(() => {
         res.redirect("/")
       })
+  },
+
+  delete: (req, res) => {
+    knex("pokemon")
+      .where("id", req.params.id)
+      .del()
+      .then(() => {
+        res.redirect("/")
+      })
   }
 };

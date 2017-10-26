@@ -31,6 +31,8 @@
               <% } else { %>
               <td><a href="/pokemon/gym/remove/<%= pokemonList[i].id %>">Remove from Gym</a></td>
             <% } %>
+            <td id="patch"><a href="#">Edit</a></td>
+            <td id="destroy"><a href="/pokemon/delete/<%= pokemonList[i].id %>">Delete</a></td>
           </tr>
         <% } %>
       </tbody>
