@@ -2,17 +2,71 @@
 <!-- Everything below line 3 feel free to delete and or build on. This is just sample data -->
 <%- contentFor('body') %>
 
-<span style="color:white">Pokemón home page.</span>
-
-
-
-<button type="button" name="button" id="add_new">+ Add New Pokemon</button>
+<div id="pokemonList">
+  <div id="listContainer">
+    <h3>Pokemón</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>trainer_id</th>
+          <th>cp</th>
+          <th>in_gym</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i = 0; i < pokemonList.length; i++) { %>
+          <tr>
+            <td><%= pokemonList[i].id %></td>
+            <td><%= pokemonList[i].name %></td>
+            <td><%= pokemonList[i].trainername %></td>
+            <td><%= pokemonList[i].cp %></td>
+            <td><%= pokemonList[i].in_gym %></td>
+            <% if(pokemonList[i].in_gym) { %>
+              <td><a href="/pokemon/gym/assign/<%= pokemonList[i].id %>">Assign to Gym</a></td>
+              <% } else { %>
+              <td><a href="/pokemon/gym/remove/<%= pokemonList[i].id %>">Remove from Gym</a></td>
+            <% } %>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <button type="button" name="button" id="add_new">+ Add New Pokemon</button>
+  </div>
+  <div id="pokemonForm">
+    <h3>Create a New Pokemon:</h3>
+    <form action="/pokemon/create" method="post">
+      <input type="text" name="name" placeholder="Pokemón Name">
+      <select id="trainerDD" name="trainer_id">
+        <option>Choose your Trainer...</option>
+        <% for(let i = 0; i < trainersList.length; i++) { %>
+        <option value="<%= trainersList[i].id %>"><%= trainersList[i].name %></option>
+        <% } %>
+      </select>
+      <input type="number" name="cp" placeholder="CP of your Pokemón">
+      <input type="radio" name="in_gym" value="true">In a gym?
+      <input type="radio" name="in_gym" value="false" selected>Not in a gym?
+      <input id="submitForm" type="submit">
+    </form>
+  </div>
+</div>
 
 <script type="text/javascript">
-   var btn = document.getElementById("add_new");
-   var passedInData = '<%= passedInData %>' ;
-   btn.addEventListener("click", function(){
-     alert("the button works, and we see "+passedInData);
+   var btn = $("#add_new");
+   btn.click((e) => {
+     console.log("We clicked the button");
+     $("#listContainer").css("display", "none");
+     $("#pokemonForm").css("display", "flex");
+   });
+
+   var subBtn = $("#submitForm");
+   subBtn.click((e) => {
+     $("#pokemonForm").css("display", "none");
+     $("#listContainer").css("display", "flex");
    })
 
 </script>
