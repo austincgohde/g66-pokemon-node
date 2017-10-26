@@ -27,11 +27,11 @@
             <td><%= pokemonList[i].cp %></td>
             <td><%= pokemonList[i].in_gym %></td>
             <% if(pokemonList[i].in_gym) { %>
-              <td><a href="/pokemon/gym/assign/<%= pokemonList[i].id %>">Assign to Gym</a></td>
-              <% } else { %>
               <td><a href="/pokemon/gym/remove/<%= pokemonList[i].id %>">Remove from Gym</a></td>
+              <% } else { %>
+              <td><a href="/pokemon/gym/assign/<%= pokemonList[i].id %>">Assign to Gym</a></td>
             <% } %>
-            <td id="patch"><a href="#">Edit</a></td>
+            <td id="patch"><a href="/pokemon/edit/<%= pokemonList[i].id %>">Edit</a></td>
             <td id="destroy"><a href="/pokemon/delete/<%= pokemonList[i].id %>">Delete</a></td>
           </tr>
         <% } %>
@@ -51,7 +51,7 @@
       </select>
       <input type="number" name="cp" placeholder="CP of your Pokemón">
       <input type="radio" name="in_gym" value="true">In a gym?
-      <input type="radio" name="in_gym" value="false" selected>Not in a gym?
+      <input type="radio" name="in_gym" value="false" checked>Not in a gym?
       <input id="submitForm" type="submit">
     </form>
   </div>
