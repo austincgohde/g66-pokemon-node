@@ -8,7 +8,9 @@ module.exports = (app) => {
 
   app.get("/", index.index);
 
-  app.get("/pokemon", pokemon.index);
+  app.get("/pokemon", pokemon.getAll);
+
+  app.get("/pokemon/:id", pokemon.getOne);
 
   app.post("/pokemon/create", pokemon.create);
 

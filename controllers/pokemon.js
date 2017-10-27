@@ -2,7 +2,7 @@ const knex = require("../db/knex.js");
 
 module.exports = {
 
-  index: (req, res) => {
+  getAll: (req, res) => {
     knex.raw(`SELECT pokemon.id, pokemon.name, pokemon.cp, pokemon.in_gym, trainers.id AS trainersId, trainers.name AS trainerName FROM pokemon JOIN trainers ON trainers.id = pokemon.trainer_id ORDER BY pokemon.id ASC`)
       .then((result) => {
         let pokemonList = result.rows;
@@ -11,6 +11,13 @@ module.exports = {
           .then((result) => {
             res.render("pokemon/index", { pokemonList: pokemonList, trainersList: result})
           })
+      })
+  },
+
+  getOne: (req, res) => {
+    knex.raw(`SELECT pokemon.id, pokemon.name, pokemon.cp, pokemon.in_gym, trainers.name AS trainer FROM pokemon JOIN trainers ON trainers.id = pokemon.trainer_id WHERE pokemon.id = ${req.params.id}`)
+      .then((result) => {
+        res.render("pokemon/info", { pokemon: result.rows[0]});
       })
   },
 

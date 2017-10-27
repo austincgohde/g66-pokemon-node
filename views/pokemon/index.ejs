@@ -22,7 +22,7 @@
         <% for(let i = 0; i < pokemonList.length; i++) { %>
           <tr>
             <td><%= pokemonList[i].id %></td>
-            <td><%= pokemonList[i].name %></td>
+            <td><a href="/pokemon/<%= pokemonList[i].id %>"><%= pokemonList[i].name %></a></td>
             <td><%= pokemonList[i].trainername %></td>
             <td><%= pokemonList[i].cp %></td>
             <td><%= pokemonList[i].in_gym %></td>

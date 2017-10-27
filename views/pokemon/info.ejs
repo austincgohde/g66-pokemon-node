@@ -1,0 +1,20 @@
+<%- contentFor('body') %>
+
+<div id="pokemonList">
+  <h3><%= pokemon.name %></h3>
+  <div id="pokemonInfo">
+    <div id="infoLeft">
+
+    </div>
+    <div id="infoRight">
+      <h5>ID</h5>
+      <p><%= pokemon.id %></p>
+      <h5>CP</h5>
+      <p><%= pokemon.cp %></p>
+      <h5>Trainer</h5>
+      <p><%= pokemon.trainer %></p>
+      <h5>Currently in a gym?</h5>
+      <p><%= pokemon.in_gym %></p>
+    </div>
+  </div>
+</div>

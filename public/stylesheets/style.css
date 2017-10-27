@@ -603,3 +603,17 @@ td {
   position: relative;
   top: 35px;
 }
+
+#pokemonInfo {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+}
+
+#infoLeft {
+  width: 50%;
+}
+
+#infoRight {
+  width: 50%;
+}
