@@ -7,9 +7,19 @@ module.exports = {
       .then((result) => {
         let pokemonList = result.rows;
 
+        req.session.gym = [];
+
+        for(let i = 0; i < pokemonList.length; i++) {
+          if(pokemonList[i].in_gym && req.session.gym.length < 2) {
+            req.session.gym.push(pokemonList[i].id);
+          }
+        }
+
         knex("trainers")
           .then((result) => {
-            res.render("pokemon/index", { pokemonList: pokemonList, trainersList: result})
+            let gym = req.session.gym;
+            console.log(gym);
+            res.render("pokemon/index", { pokemonList: pokemonList, trainersList: result, gym: gym})
           })
       })
   },
@@ -47,8 +57,6 @@ module.exports = {
               currTrainer = result.splice(i, 1);
             }
           }
-          console.log(result);
-          console.log(currTrainer);
           res.render("pokemon/update", { pokemon: pokemon, trainersList: result, currTrainer: currTrainer})
         })
       })
@@ -74,6 +82,31 @@ module.exports = {
       .del()
       .then(() => {
         res.redirect("/")
+      })
+  },
+
+  gymAssign: (req, res) => {
+    knex("pokemon")
+      .where("id", req.params.id)
+      .update("in_gym", "true")
+      .then(() => {
+        res.redirect("/")
+      })
+  },
+
+  gymRemove: (req, res) => {
+    knex("pokemon")
+      .where("id", req.params.id)
+      .update("in_gym", "false")
+      .then(() => {
+        for(let i = 0; i < req.session.gym.length; i++) {
+          if(req.session.gym[i] == req.params.id) {
+            req.session.gym.splice(i, 1);
+          }
+        }
+        req.session.save(() => {
+          res.redirect("/");
+        })
       })
   }
 };

@@ -19,4 +19,8 @@ module.exports = (app) => {
   app.get("/pokemon/edit/:id", pokemon.getUpdate);
 
   app.post("/pokemon/edit/:id", pokemon.update);
+
+  app.get("/pokemon/gym/assign/:id", pokemon.gymAssign);
+
+  app.get("/pokemon/gym/remove/:id", pokemon.gymRemove);
 };

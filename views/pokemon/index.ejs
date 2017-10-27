@@ -28,6 +28,8 @@
             <td><%= pokemonList[i].in_gym %></td>
             <% if(pokemonList[i].in_gym) { %>
               <td><a href="/pokemon/gym/remove/<%= pokemonList[i].id %>">Remove from Gym</a></td>
+              <% } else if(gym.length === 2){ %>
+              <td>Gym is full</td>
               <% } else { %>
               <td><a href="/pokemon/gym/assign/<%= pokemonList[i].id %>">Assign to Gym</a></td>
             <% } %>
@@ -70,5 +72,4 @@
      $("#pokemonForm").css("display", "none");
      $("#listContainer").css("display", "flex");
    })
-
 </script>
