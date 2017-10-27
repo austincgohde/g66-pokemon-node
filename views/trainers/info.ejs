@@ -1,0 +1,10 @@
+<%- contentFor('body') %>
+
+<div id="pokemonList">
+  <h3><%= trainer[0].trainer %></h3>
+  <ul> 
+    <% for(let i = 0; i < trainer.length; i++) { %>
+    <li><%= trainer[i].pokemon %></li>
+    <% } %>
+  </ul>
+</div>

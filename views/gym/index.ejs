@@ -1,0 +1,42 @@
+<%- contentFor('body') %>
+
+<div id="pokemonList">
+  <div id="gymInfo">
+    <h3>GYM</h3>
+    <% if(gym.length !== 2) { %>
+      <form action="/gym/pokemon/add" method="post">
+        <% if(!gym[0]) { %>
+          <p class="gymPoke"><strong>pokemon 1:</strong><span>
+            <select name="poke1">
+              <% for(let i = 0; i < pokeFalse.length; i++) { %>
+                <option value="<%= pokeFalse[i].id %>"><%= pokeFalse[i].name %></option>
+              <% } %>
+            </select>
+          </span>
+        </p>
+        <% } else { %>
+          <p class="gymPoke"><strong>pokemon 1:</strong>  <%= pokeTrue[0].name %></p>
+        <% } %>
+        <% if(!gym[1]) { %>
+          <p class="gymPoke"><strong>pokemon 2:</strong><span>
+            <select name="poke2">
+              <% for(let i = 0; i < pokeFalse.length; i++) { %>
+                <option value="<%= pokeFalse[i].id %>"><%= pokeFalse[i].name %></option>
+              <% } %>
+            </select>
+          </span>
+        </p>
+        <% } else { %>
+          <p class="gymPoke"><strong>pokemon 1:</strong>  <%= pokeTrue[1].name %></p>
+        <% } %>
+        <input id="gymSub" type="submit" value="Set pokemon">
+      </form>
+    <% } else { %>
+      <p class="gymPoke"><strong>pokemon 1:</strong>  <%= pokeTrue[0].name %></p>
+      <p class="gymPoke"><strong>pokemon 1:</strong>  <%= pokeTrue[1].name %></p>
+
+      <p class="gymPoke"><strong>Winner:</strong></p>
+    <% } %>
+
+  </div>
+</div>

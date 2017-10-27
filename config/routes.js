@@ -1,6 +1,7 @@
 const index = require('../controllers/index');
 const trainers = require('../controllers/trainers');
 const pokemon = require('../controllers/pokemon');
+const gym = require('../controllers/gym');
 
 // Routes for complete app
 
@@ -23,4 +24,12 @@ module.exports = (app) => {
   app.get("/pokemon/gym/assign/:id", pokemon.gymAssign);
 
   app.get("/pokemon/gym/remove/:id", pokemon.gymRemove);
+
+  app.get("/trainers", trainers.getAll);
+
+  app.get("/trainers/:id", trainers.getOne);
+
+  app.get("/gym", gym.index);
+
+  app.post("/gym/pokemon/add", gym.add);
 };
