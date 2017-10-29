@@ -293,7 +293,7 @@ And two Pokemón are already in the gym
 Then I see a 'battle' button
 ```
 
-__#8__
+__#8__ __IF statement so this situation never happens__
 
 ```
 When I visit the gym home page

@@ -9,7 +9,8 @@ exports.up = function(knex, Promise) {
       .references("id")
       .inTable("trainers")
       .onDelete("CASCADE")
-      .index()
+      .index();
+    table.string("sprite");
     table.timestamps();
   })
 };

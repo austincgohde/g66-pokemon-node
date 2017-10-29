@@ -3,6 +3,7 @@
 <div id="pokemonList">
   <div id="gymInfo">
     <h3>GYM</h3>
+    <p class="errMsg"><%= message %></p>
     <% if(gym.length !== 2) { %>
       <form action="/gym/pokemon/add" method="post">
         <% if(!gym[0]) { %>
@@ -34,8 +35,9 @@
     <% } else { %>
       <p class="gymPoke"><strong>pokemon 1:</strong>  <%= pokeTrue[0].name %></p>
       <p class="gymPoke"><strong>pokemon 1:</strong>  <%= pokeTrue[1].name %></p>
-
-      <p class="gymPoke"><strong>Winner:</strong></p>
+      <a href="/gym/battle" id="battleCmd">Battle!</a>
+      <a href="/gym/reset" id="resetCmd">Reset Gym</a>
+      <p class="gymPoke"><strong>Winner: <%= winner %></strong></p>
     <% } %>
 
   </div>

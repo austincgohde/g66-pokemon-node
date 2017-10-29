@@ -32,4 +32,9 @@ module.exports = (app) => {
   app.get("/gym", gym.index);
 
   app.post("/gym/pokemon/add", gym.add);
+
+  app.get("/gym/battle", gym.battle);
+
+  app.get("/gym/reset", gym.reset);
+
 };

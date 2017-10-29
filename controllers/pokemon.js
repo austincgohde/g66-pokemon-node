@@ -25,7 +25,7 @@ module.exports = {
   },
 
   getOne: (req, res) => {
-    knex.raw(`SELECT pokemon.id, pokemon.name, pokemon.cp, pokemon.in_gym, trainers.name AS trainer FROM pokemon JOIN trainers ON trainers.id = pokemon.trainer_id WHERE pokemon.id = ${req.params.id}`)
+    knex.raw(`SELECT pokemon.id, pokemon.name, pokemon.cp, pokemon.in_gym, pokemon.sprite, trainers.name AS trainer FROM pokemon JOIN trainers ON trainers.id = pokemon.trainer_id WHERE pokemon.id = ${req.params.id}`)
       .then((result) => {
         res.render("pokemon/info", { pokemon: result.rows[0]});
       })
